@@ -11,7 +11,7 @@
 if( ! defined( 'PTP_PLUGIN_PATH' ) ) {
 
   // define plugin version for update nag
-  define('PTP_PLUGIN_VERSION', '2.0.3');
+  define('PTP_PLUGIN_VERSION', '1.0.0');
 
   // Define a constant to always include the absolute path
   define('PTP_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
