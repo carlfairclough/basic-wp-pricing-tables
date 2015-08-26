@@ -21,8 +21,8 @@ function dh_ptp_generate_simple_flat_pricing_table_html ($id)
         <!-- Style this area with flexbox! the checkbox should be hidden. Trigger the plan switching with your own JS -->
             <input type="checkbox">
             <span>Monthly</span>
-            <span>Yearly</span>
             <div class="faketoggle"></div>
+            <span>Yearly</span>
         </label>
     </div>
     <div id="plan-table-'. $id .'" class="plan-table">';
@@ -61,8 +61,8 @@ function dh_ptp_generate_simple_flat_pricing_table_html ($id)
         $pricing_table_html .= '
 		<div class="plan-column ' . $feature . ' plan-id-' . $loop_index . '">' .
 			'<div class="plan-name">' . $plan_name . '</div> ' .
-	  		'<div class="plan-price">' . $plan_monthly_price . '<span class="plan-duration">per month</span></div>' .
-            '<div class="plan-price hidden">' . $plan_yearly_price . '<span class="plan-duration">per year</span></div>' .
+	  		'<div class="plan-price"><div class="monthly-price">' . $plan_monthly_price . '<span class="plan-duration">per month</span></div>' .
+            '<div class="yearly-price hidden">' . $plan_yearly_price . '<span class="plan-duration">per year</span></div></div>' .
                 dh_ptp_features_to_html_simple_flat($plan_features, dh_ptp_get_max_number_of_features()) .
   			'<div class="plan-cta">'.
                 (($custom_button)?$custom_button:'<a class="plan-button" id="plan-'.$id.'-cta-'.$loop_index.'" href="' . $button_url . '">' . $button_text . '</a>') .
@@ -117,22 +117,36 @@ function dh_ptp_features_to_html_simple_flat ($plan_features, $max_number_of_fea
 
     for ($i=0; $i<$max_number_of_features; $i++) {
         // Check if tooltip to exclude initial print
+
+        $nochars = '';
+
+        if (empty($features[$i])) {
+            $nochars = 'plan-item-empty';
+        }
+
         if ( substr($features[$i], 0, 2 ) !== "- " ) {
 
-            // PRINT ROW TAG
-            $html .= '<div class="plan-item plan-item-id-'.$i.'">'.$focusfeature[0];
-            // PRINT CONTENT
-
-            if( $features[$i][0] === '*') {
-                $html .= '<b>';
-            }
-            $html .= trim(str_replace(array("\n", "\r"), '', $features[$i]), '*');
-            if( $features[$i][0] === '*') {
-                $html .= '</b>';
-            }
             // DOES IT HAVE A TOOLTIP?
             if ( substr($features[$i + 1], 0, 2 ) === "- ") {
-                $html .= '<div class="plan-item-tooltip plan-item-tooltip-id-'.$i.'">'.str_replace(array("\n", "\r"), '', $features[$i + 1]).'</div>';
+                $tooltip = true;
+                $tooltipclass = 'has-tooltip';
+            } else {
+                $tooltip = false;
+                $tooltipclass = 'no-tooltip';
+            }
+
+            // PRINT ROW TAG
+            $html .= '<div class="plan-item plan-item-id-'.$i.' plan-item-'.$tooltipclass.' '.$nochars.'">'.$focusfeature[0];
+            // PRINT CONTENT
+
+            $html .= '<span>';
+            if( $features[$i][0] === '*') { $html .= '<b>';}
+            $html .= trim(str_replace(array("\n", "\r"), '', $features[$i]), '*');
+            if( $features[$i][0] === '*') { $html .= '</b>';}
+            $html .= '</span>';
+            
+            if ($tooltip) {
+                $html .= '<div class="plan-item-tooltip plan-item-tooltip-id-'.$i.'">'.str_replace(array("\n", "\r"), '', substr($features[$i + 1], 2)).'</div>';
             }
             // PRINT CLOSING TAG
             $html .= '</div>';
