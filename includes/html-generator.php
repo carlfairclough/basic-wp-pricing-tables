@@ -59,7 +59,7 @@ function dh_ptp_generate_simple_flat_pricing_table_html ($id)
 
         // create the html code
         $pricing_table_html .= '
-		<div class="plan-column' . $feature . ' plan-id-' . $loop_index . '">' .
+		<div class="plan-column ' . $feature . ' plan-id-' . $loop_index . '">' .
 			'<div class="plan-name">' . $plan_name . '</div> ' .
 	  		'<div class="plan-price">' . $plan_monthly_price . '<span class="plan-duration">per month</span></div>' .
             '<div class="plan-price hidden">' . $plan_yearly_price . '<span class="plan-duration">per year</span></div>' .
