@@ -62,7 +62,7 @@ function dh_ptp_generate_simple_flat_pricing_table_html ($id)
 		<div class="plan-column ' . $feature . ' plan-id-' . $loop_index . '">' .
 			'<div class="plan-name">' . $plan_name . '</div> ' .
 	  		'<div class="plan-price"><div class="monthly-price">' . $plan_monthly_price . '<span class="plan-duration">per month</span></div>' .
-            '<div class="yearly-price hidden">' . $plan_yearly_price . '<span class="plan-duration">per year</span></div></div>' .
+            '<div class="yearly-price hidden">' . $plan_yearly_price . '<span class="plan-duration">per month</span></div></div>' .
                 dh_ptp_features_to_html_simple_flat($plan_features, dh_ptp_get_max_number_of_features()) .
   			'<div class="plan-cta">'.
                 (($custom_button)?$custom_button:'<a class="plan-button" id="plan-'.$id.'-cta-'.$loop_index.'" href="' . $button_url . '">' . $button_text . '</a>') .
