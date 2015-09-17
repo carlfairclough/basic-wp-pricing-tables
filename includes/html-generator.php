@@ -37,6 +37,8 @@ function dh_ptp_generate_simple_flat_pricing_table_html ($id)
         $button_text = isset($column['buttontext'])?$column['buttontext']:'';
         $button_url = isset($column['buttonurl'])?$column['buttonurl']:'';
         $button_url = trim($button_url);
+        $button_url_annual = isset($column['buttonurlannual'])?$column['buttonurlannual']:'';
+        $button_url_annual = trim($button_url_annual);
         
         // Get custom shortcode if any
         $custom_button = false;
@@ -64,9 +66,12 @@ function dh_ptp_generate_simple_flat_pricing_table_html ($id)
 	  		'<div class="plan-price"><div class="monthly-price">' . $plan_monthly_price . '<span class="plan-duration">per month</span></div>' .
             '<div class="yearly-price hidden">' . $plan_yearly_price . '<span class="plan-duration">per month</span></div></div>' .
                 dh_ptp_features_to_html_simple_flat($plan_features, dh_ptp_get_max_number_of_features()) .
-  			'<div class="plan-cta">'.
+  			'<div class="plan-cta monthly-cta">'.
                 (($custom_button)?$custom_button:'<a class="plan-button" id="plan-'.$id.'-cta-'.$loop_index.'" href="' . $button_url . '">' . $button_text . '</a>') .
   			'</div>' .
+            '<div class="plan-cta annual-cta hidden">'.
+                (($custom_button)?$custom_button:'<a class="plan-button" id="plan-'.$id.'-cta-'.$loop_index.'" href="' . $button_url_annual . '">' . $button_text . '</a>') .
+            '</div>' .
 		'</div>';
 
         $loop_index++;

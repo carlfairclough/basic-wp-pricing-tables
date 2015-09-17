@@ -117,7 +117,11 @@
 
                     <li>
                         <?php $mb->the_field('buttonurl'); ?>
-                        <input type="text" placeholder="<?php _e('e.g. http://example.com/buy', PTP_LOC); ?>" name="<?php $mb->the_name(); ?>" value="<?php echo $mb->the_value();?>" class="form-control">
+                        <input type="text" placeholder="Monthly URL" name="<?php $mb->the_name(); ?>" value="<?php echo $mb->the_value();?>" class="form-control">
+                    </li>
+                    <li>
+                        <?php $mb->the_field('buttonurlannual'); ?>
+                        <input type="text" placeholder="Annual URL" name="<?php $mb->the_name(); ?>" value="<?php echo $mb->the_value();?>" class="form-control">
                     </li>
                 </ul>
             </div>
