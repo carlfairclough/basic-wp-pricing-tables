@@ -22,7 +22,7 @@ function dh_ptp_generate_simple_flat_pricing_table_html ($id)
             <input type="checkbox">
             <span>Monthly</span>
             <div class="faketoggle"></div>
-            <span>Yearly</span>
+            <span>Yearly (Save 20&#37;)</span>
         </label>
     </div>
     <div id="plan-table-'. $id .'" class="plan-table">';
